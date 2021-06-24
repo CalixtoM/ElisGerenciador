@@ -4,11 +4,12 @@
 	function buscaCliente($mysqli){
 		$cliente = "SELECT * FROM cliente ORDER BY cd_cliente ASC";
 
+		$cont = 0;
 
 		if($result = $mysqli->query($cliente)){
 			while($obj = $result->fetch_object()){
-				$cont = 0;
 				$cont ++;
+
 
 				echo "
 					<th scope='row'> ".$cont."</th>
@@ -34,19 +35,21 @@
 					      		</div>
 					      		<div class='modal-body'>
 					        		<form method='post'>
-					        			<input type='text' placeholder='Nome' value='$obj->nm_cliente' class='form-control' name='nome' id='mod'>
-					        			<input type='number' placeholder='Telefone' value='$obj->nr_telefone' name='tel' class='form-control' id='mod'>
-					        			<input id='mod' type='number' placeholder='Celular' value='$obj->nr_celular' name='cel' class='form-control'>
-					        			<input id='mod' type='email' placeholder='Email' value='$obj->ds_email' name='email' class='form-control'>
+					        			<input type='text' placeholder='Nome' value='$obj->cd_cliente' class='form-control' name='codigo' id='mod' disabled=''>
+					        			<input type='text' placeholder='Nome' value='$obj->nm_cliente' class='form-control' name='nomeedit' id='mod'>
+					        			<input type='number' placeholder='Telefone' value='$obj->nr_telefone' name='teledit' class='form-control' id='mod'>
+					        			<input id='mod' type='number' placeholder='Celular' value='$obj->nr_celular' name='celedit' class='form-control'>
+					        			<input id='mod' type='email' placeholder='Email' value='$obj->ds_email' name='emailedit' class='form-control'>
 					        			        		
 					        	</div>
 					        	<div class='modal-footer'>
 					        		<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
-					        		<input type='submit' class=btn btn-primary' value='Salvar'></form>
+					        		<input type='submit' class='btn btn-primary' value='Salvar'></form>
 					      		</div>
 					    	</div>
 					 	</div>
 					</div>
+
 				";
 
 
@@ -56,6 +59,18 @@
 
 				';		
 			}
+		}
+	}
+
+
+	function editarCliente($mysqli) {
+		
+		$editar = "UPDATE cliente SET nm_cliente = '".$_POST['nomeedit']."', nr_telefone = '".$_POST['teledit']."', nr_celular = '".$_POST['celedit']."', ds_email = '".$_POST['emailedit']."' WHERE cd_cliente = '".$_POST['codigo']."'";
+
+		if($result = $mysqli->query($editar)){
+		}
+		else{
+			printf("Error: %s\n", $mysqli->error);
 		}
 	}
 
@@ -74,26 +89,6 @@
 		}
 	}
 
-	function editarCliente($mysqli){
 
-		$cliente = "SELECT * FROM cliente WHERE cd_cliente = '".$_SESSION['cliente']."'";
-
-
-		if($result = $mysqli->query($cliente)){
-			while($obj = $result->fetch_object()){
-
-			echo '<form method="post">
-	        			<input type="text" placeholder="Nome" class="form-control" name="nome" id="mod">
-	        			<input type="number" placeholder="Telefone" name="tel" class="form-control" id="mod">
-	        			<input id="mod" type="number" placeholder="Celular" name="cel" class="form-control">
-	        			<input id="mod" type="email" placeholder="Email" name="email" class="form-control">
-	        		
-	      		</div>
-	      		<div class="modal-footer">
-	        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-	        		<input type="submit" class="btn btn-primary" value="Salvar"></form>';
-			}
-		}
-	}		
 
 ?>

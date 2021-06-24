@@ -13,8 +13,11 @@ include('inc/conecta.php');
 			//Se houver conteúdo no POST nome é chamada a função de cadastro de clientes
 			cadastraCliente($mysqli);
 		}
-	}
 
+		if(isset($_POST['nomeedit'])){
+			editarCliente($mysqli);
+		}
+	}
 ?>
 
 <!-- ESSA PÁGINA É RESPONSÁVEL POR EXIBIR, CADASTRAR OU EDITAR CLIENTES  -->
@@ -84,7 +87,7 @@ include('inc/conecta.php');
 	      		</div>
 	    	</div>
 	 	</div>
-	</div>modaldel
+	</div>
 
 	<!-- Modal Editar -->
 	
