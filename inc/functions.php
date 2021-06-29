@@ -68,6 +68,8 @@
 		$editar = "UPDATE cliente SET nm_cliente = '".$_POST['nomeedit']."', nr_telefone = '".$_POST['teledit']."', nr_celular = '".$_POST['celedit']."', ds_email = '".$_POST['emailedit']."' WHERE cd_cliente = '".$_POST['codigo']."'";
 
 		if($result = $mysqli->query($editar)){
+			echo "<script>location.href='clientes.php';</script>";
+
 		}
 		else{
 			printf("Error: %s\n", $mysqli->error);
@@ -89,6 +91,55 @@
 		}
 	}
 
+	function buscaImoveis($mysqli){
+		$imoveis = "SELECT * FROM imovel AS i INNER JOIN cliente AS c ON i.id_proprietario = c.cd_cliente ORDER BY cd_cliente ASC";
 
+		if($result = $mysqli->query($imoveis)){
+			while($obj = $result->fetch_object()){
+
+
+
+				echo "
+					<th scope='row'> ".$obj->cd_imovel."</th>
+					<td>".$obj->ds_endereco."</td>
+					<td>".$obj->nr_valor."</td>
+					<td>".$obj->nm_cliente."</td>
+					<td><a type='button' class='btn btn-warning' data-toggle='modal' data-target='#modaledit$obj->cd_cliente'>
+					Editar
+					</a></td><td><a type='button' class='btn btn-danger' data-toggle='modal' data-target='#modaldel?cd=$obj->cd_cliente'>
+					Excluir
+				</a></td>
+				</tr>
+
+				<div class='modal fade' id='modaledit$obj->cd_cliente' tabindex'-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
+						<div class='modal-dialog modal-dialog-centered' role='document'>
+					    	<div class='modal-content'>
+					    		<div class='modal-header'>
+					        		<h5 class='modal-title' id='exampleModalLongTitle'>Editar Cliente</h5>
+					        		<button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+					          			<span aria-hidden='true'>&times;</span>
+					        		</button>
+					      		</div>
+					      		<div class='modal-body'>
+					        		<form method='post'>
+					        			<input type='text' placeholder='Nome' value='$obj->cd_cliente' class='form-control' name='codigo' id='mod' disabled=''>
+					        			<input type='text' placeholder='Nome' value='$obj->nm_cliente' class='form-control' name='nomeedit' id='mod'>
+					        			<input type='number' placeholder='Telefone' value='$obj->nr_telefone' name='teledit' class='form-control' id='mod'>
+					        			<input id='mod' type='number' placeholder='Celular' value='$obj->nr_celular' name='celedit' class='form-control'>
+					        			<input id='mod' type='email' placeholder='Email' value='$obj->ds_email' name='emailedit' class='form-control'>
+					        			        		
+					        	</div>
+					        	<div class='modal-footer'>
+					        		<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
+					        		<input type='submit' class='btn btn-primary' value='Salvar'></form>
+					      		</div>
+					    	</div>
+					 	</div>
+					</div>
+
+				";	
+			}
+		}
+	}
 
 ?>
