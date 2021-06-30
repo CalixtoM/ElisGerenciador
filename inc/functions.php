@@ -142,4 +142,30 @@
 		}
 	}
 
+	function cadastraImoveis($mysqli){
+
+		$cdimoveis = "INSERT INTO imovel VALUES (NULL, '".$_POST['desc']."', '".$_POST['vl']."', '".$_POST['prop']."')";
+
+		if(!$mysqli->query($inserir)) {
+			echo $mysqli->error;
+		}
+		
+		else{
+
+		echo "<script>location.href='imoveis.php';</script>";
+		}
+	}
+
+	function buscaProp($mysqli){
+		$cliente = "SELECT * FROM cliente ORDER BY cd_cliente ASC";
+
+		if($result = $mysqli->query($cliente)){
+			while($obj = $result->fetch_object()){
+
+
+				echo "<option>".$obj->nm_cliente."</option>";
+			}	
+		}	
+	}
+
 ?>
