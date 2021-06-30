@@ -144,9 +144,9 @@
 
 	function cadastraImoveis($mysqli){
 
-		$cdimoveis = "INSERT INTO imovel VALUES (NULL, '".$_POST['desc']."', '".$_POST['vl']."', '".$_POST['prop']."')";
+		$cdimoveis = "INSERT INTO imovel VALUES (NULL, '".$_POST['end']."', '".$_POST['vl']."', '".$_POST['prop']."')";
 
-		if(!$mysqli->query($inserir)) {
+		if(!$mysqli->query($cdimoveis)) {
 			echo $mysqli->error;
 		}
 		
@@ -163,7 +163,7 @@
 			while($obj = $result->fetch_object()){
 
 
-				echo "<option>".$obj->nm_cliente."</option>";
+				echo "<option value='$obj->cd_cliente'>".$obj->nm_cliente."</option>";
 			}	
 		}	
 	}

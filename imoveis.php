@@ -9,6 +9,11 @@
 		}
 		else{
 
+			if(isset($_POST['end'])){
+				//Se houver conteúdo no POST nome é chamada a função de cadastro de clientes
+				cadastraImoveis($mysqli);
+			}
+
 		}
 
 ?>
@@ -66,9 +71,13 @@
 	      		</div>
 	      		<div class="modal-body">
 	        		<form method="post">
-	        			<input type="text" placeholder="Endereço" class="form-control" name="nome" id="mod">
-	        			<input type="number" placeholder="Valor" name="tel" class="form-control" id="mod">
-	        			<input id="mod" type="number" placeholder="Proprietário" name="cel" class="form-control">
+	        			<input type="text" placeholder="Endereço" class="form-control" name="end" id="mod">
+	        			<input type="number" name="vl" placeholder="Valor" name="tel" class="form-control" id="mod">
+	        			<select class="form-control" name="prop" id="mod">
+	        				<?php
+	        					buscaProp($mysqli);
+	        				?>
+	        			</select>
 	        		
 	      		</div>
 	      		<div class="modal-footer">
