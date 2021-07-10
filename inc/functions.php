@@ -24,7 +24,7 @@
 				</a></td>
 				</tr>
 
-				<div class='modal fade' id='modaledit$obj->cd_cliente' tabindex'-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
+					<div class='modal fade' id='modaledit$obj->cd_cliente' tabindex'-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
 						<div class='modal-dialog modal-dialog-centered' role='document'>
 					    	<div class='modal-content'>
 					    		<div class='modal-header'>
@@ -35,7 +35,7 @@
 					      		</div>
 					      		<div class='modal-body'>
 					        		<form method='post'>
-					        			<input type='text' placeholder='Nome' value='$obj->cd_cliente' class='form-control' name='codigo' id='mod' disabled=''>
+					        			<input type='hidden' placeholder='Nome' value='$obj->cd_cliente' class='form-control' name='cd' id='mod' >
 					        			<input type='text' placeholder='Nome' value='$obj->nm_cliente' class='form-control' name='nomeedit' id='mod'>
 					        			<input type='number' placeholder='Telefone' value='$obj->nr_telefone' name='teledit' class='form-control' id='mod'>
 					        			<input id='mod' type='number' placeholder='Celular' value='$obj->nr_celular' name='celedit' class='form-control'>
@@ -65,10 +65,9 @@
 
 	function editarCliente($mysqli) {
 		
-		$editar = "UPDATE cliente SET nm_cliente = '".$_POST['nomeedit']."', nr_telefone = '".$_POST['teledit']."', nr_celular = '".$_POST['celedit']."', ds_email = '".$_POST['emailedit']."' WHERE cd_cliente = '".$_POST['codigo']."'";
+		$editar = "UPDATE cliente SET nm_cliente = '".$_POST['nomeedit']."', nr_telefone = '".$_POST['teledit']."', nr_celular = '".$_POST['celedit']."', ds_email = '".$_POST['emailedit']."' WHERE cd_cliente = '".$_POST['cd']."'";
 
 		if($result = $mysqli->query($editar)){
-			echo "<script>location.href='clientes.php';</script>";
 
 		}
 		else{
@@ -89,6 +88,18 @@
 
 		echo "<script>location.href='clientes.php';</script>";
 		}
+	}
+
+	function buscaProp($mysqli){
+		$cliente = "SELECT * FROM cliente ORDER BY cd_cliente ASC";
+
+		if($result = $mysqli->query($cliente)){
+			while($obj = $result->fetch_object()){
+
+
+				echo "<option value='$obj->cd_cliente'>".$obj->nm_cliente."</option>";
+			}	
+		}	
 	}
 
 	function buscaImoveis($mysqli){
@@ -122,12 +133,14 @@
 					      		</div>
 					      		<div class='modal-body'>
 					        		<form method='post'>
-					        			<input type='text' placeholder='Nome' value='$obj->cd_cliente' class='form-control' name='codigo' id='mod' disabled=''>
-					        			<input type='text' placeholder='Nome' value='$obj->nm_cliente' class='form-control' name='nomeedit' id='mod'>
-					        			<input type='number' placeholder='Telefone' value='$obj->nr_telefone' name='teledit' class='form-control' id='mod'>
-					        			<input id='mod' type='number' placeholder='Celular' value='$obj->nr_celular' name='celedit' class='form-control'>
-					        			<input id='mod' type='email' placeholder='Email' value='$obj->ds_email' name='emailedit' class='form-control'>
-					        			        		
+					        			<input type='hidden' value='$obj->cd_imovel' class='form-control' name='codigo' >
+					        			<input type='text' placeholder='Endereço' value='$obj->ds_endereco' class='form-control' name='endedit' id='mod'>
+					        			<input type='number' placeholder='Valor' value='$obj->nr_valor' name='valedit' class='form-control' id='mod'>
+					        			<select class='form-control' name='prop' id='mod'>
+					        			";
+					        					buscaProp($mysqli);	 echo
+					        			"	
+					        			</select>		
 					        	</div>
 					        	<div class='modal-footer'>
 					        		<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
@@ -156,16 +169,16 @@
 		}
 	}
 
-	function buscaProp($mysqli){
-		$cliente = "SELECT * FROM cliente ORDER BY cd_cliente ASC";
+	function editarImoveis($mysqli) {
+		
+		$editar = "UPDATE imovel SET ds_endereco = '".$_POST['endedit']."', nr_valor = '".$_POST['valedit']."', id_proprietario = '".$_POST['prop']."'";
 
-		if($result = $mysqli->query($cliente)){
-			while($obj = $result->fetch_object()){
+		if($result = $mysqli->query($editar)){
 
-
-				echo "<option value='$obj->cd_cliente'>".$obj->nm_cliente."</option>";
-			}	
-		}	
+		}
+		else{
+			printf("Error: %s\n", $mysqli->error);
+		}
 	}
 
 ?>

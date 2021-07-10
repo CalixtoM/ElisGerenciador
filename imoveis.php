@@ -14,6 +14,10 @@
 				cadastraImoveis($mysqli);
 			}
 
+			if(isset($_POST['endedit'])){
+				editarImoveis($mysqli);
+			}
+
 		}
 
 ?>
