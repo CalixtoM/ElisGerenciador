@@ -183,16 +183,25 @@
 
 	function buscaCompraVenda($mysqli) {
 
-		$buscacv = "SELECT * FROM compra_venda AS cv INNER JOIN imovel AS i ON cv.id_imovel = i.cd_imovel INNER JOIN cliente AS c ON cv.id_vendedor = c.cd_cliente INNER JOIN cliente AS cl ON cv.id_comprador = cl.cd_cliente";
+		$buscacv = "SELECT * FROM compra_venda AS cv INNER JOIN imovel AS i ON cv.id_imovel = i.cd_imovel INNER JOIN cliente AS c ON cv.id_vendedor = c.cd_cliente ";
 
 		if($result = $mysqli->query($buscacv)){
 		 	while($obj = $result->fetch_object()){
 
+		 		$comp = $obj->id_comprador;
 
-		 		echo "
+		 		$compr = "SELECT * FROM cliente WHERE cd_cliente = '".$comp."'";
+
+
+		 		if($result = $mysqli->query($compr)){
+		 		 	while($obji = $result->fetch_object()){
+
+		 		 		$nome = $obji->nm_cliente;
+
+		 				echo "
 		 							<td>".$obj->ds_endereco."</td>
 		 							<td>".$obj->nm_cliente."</td>
-		 							<td>".$obj->nm_cliente."</td>
+		 							<td>".$nome."</td>
 		 							<td>".$obj->ds_financiamento."</td>
 		 							<td><a type='button' class='btn btn-warning' data-toggle='modal' data-target='#modaledit$obj->cd_compravenda'>
 		 							Editar
@@ -203,6 +212,8 @@
 
 		 						
 		 						";
+		 			}
+		 		}				
 		 	}
 		} 		
 		else{
