@@ -102,6 +102,18 @@
 		}	
 	}
 
+	function buscaComp($mysqli){
+		$cliente = "SELECT * FROM cliente ORDER BY cd_cliente ASC";
+
+		if($result = $mysqli->query($cliente)){
+			while($obj = $result->fetch_object()){
+
+
+				echo "<option value='$obj->cd_cliente'>".$obj->nm_cliente."</option>";
+			}	
+		}	
+	}
+
 	function buscaImoveis($mysqli){
 		$imoveis = "SELECT * FROM imovel AS i INNER JOIN cliente AS c ON i.id_proprietario = c.cd_cliente ORDER BY cd_cliente ASC";
 
@@ -151,6 +163,19 @@
 					</div>
 
 				";	
+			}
+		}
+	}
+
+	function buscaImoveis2($mysqli){
+		$imoveis = "SELECT * FROM imovel AS i INNER JOIN cliente AS c ON i.id_proprietario = c.cd_cliente ORDER BY cd_cliente ASC";
+
+		if($result = $mysqli->query($imoveis)){
+			while($obj = $result->fetch_object()){
+
+			echo "<option value='$obj->cd_cliente'>".$obj->ds_endereco."</option>";
+
+	
 			}
 		}
 	}
@@ -219,6 +244,20 @@
 		else{
 			echo $mysqli->error;
 
+		}
+	}
+
+	function cadastraFinanciamento($mysqli){
+
+		$cdfi = "INSERT INTO compra_venda VALUES (NULL, '".$_POST['end']."', '".$_POST['vl']."', '".$_POST['prop']."')";
+
+		if(!$mysqli->query($cdimoveis)) {
+			echo $mysqli->error;
+		}
+		
+		else{
+
+		echo "<script>location.href='imoveis.php';</script>";
 		}
 	}
 

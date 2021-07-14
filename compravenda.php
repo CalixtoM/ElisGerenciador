@@ -68,14 +68,21 @@
 	      		</div>
 	      		<div class="modal-body">
 	        		<form method="post">
-	        			<input type="text" placeholder="Endereço" class="form-control" name="end" id="mod">
-	        			<input type="number" name="vl" placeholder="Valor" name="tel" class="form-control" id="mod">
+	        			<select class="form-control" name="prop" id="mod">
+	        				<?php
+	        					buscaImoveis2($mysqli);
+	        				?>
+	        			</select>
 	        			<select class="form-control" name="prop" id="mod">
 	        				<?php
 	        					buscaProp($mysqli);
 	        				?>
 	        			</select>
-	        		
+	        			<select class="form-control" name="comp" id="mod">
+	        				<?php
+	        					buscaComp($mysqli);
+	        				?>	
+	        			</select>
 	      		</div>
 	      		<div class="modal-footer">
 	        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
