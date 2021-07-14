@@ -3,13 +3,13 @@ ElisGerenciador é um projeto desenvolvido buscando auxiliar minha mãe em suas 
 
 ### Funções:
 
-- Adicionar Clientes;
-- Editar Clientes;
-- Listar Clientes;
-- Adicionar Imóveis;
-- Editar Imóveis;
-- Listar Imóveis;
-- Adicionar Financiamento;
+- Adicionar Clientes✅;
+- Editar Clientes✅;
+- Listar Clientes✅;
+- Adicionar Imóveis✅;
+- Editar Imóveis✅;
+- Listar Imóveis✅;
+- Adicionar Financiamento✅;
 - Editar Financiamentos;
 - Listar Financiamentos.
 
