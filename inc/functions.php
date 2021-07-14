@@ -213,33 +213,21 @@
 		if($result = $mysqli->query($buscacv)){
 		 	while($obj = $result->fetch_object()){
 
-		 		$comp = $obj->id_comprador;
-
-		 		$compr = "SELECT * FROM cliente WHERE cd_cliente = '".$comp."'";
 
 
-		 		if($result = $mysqli->query($compr)){
-		 		 	while($obji = $result->fetch_object()){
-
-		 		 		$nome = $obji->nm_cliente;
-
-		 				echo "
-		 							<td>".$obj->ds_endereco."</td>
-		 							<td>".$obj->nm_cliente."</td>
-		 							<td>".$nome."</td>
-		 							<td>".$obj->ds_financiamento."</td>
-		 							<td><a type='button' class='btn btn-warning' data-toggle='modal' data-target='#modaledit$obj->cd_compravenda'>
-		 							Editar
-		 							</a></td><td><a type='button' class='btn btn-danger' data-toggle='modal' data-target='#modaldel?cd=$obj->cd_compravenda'>
-		 							Excluir
-		 						</a></td>
-		 						</tr>
-
-		 						
+		 		echo "
+						<td>".$obj->ds_endereco."</td>
+						<td>".$obj->nm_cliente."</td>
+		 				<td>".$obj->id_comprador."</td>
+		 				<td>".$obj->ds_financiamento."</td>
+						<td><a type='button' class='btn btn-warning' data-toggle='modal' data-target='#modaledit$obj->cd_compravenda'>
+		 					Editar
+		 					</a></td><td><a type='button' class='btn btn-danger' data-toggle='modal' data-target='#modaldel?cd=$obj->cd_compravenda'>
+		 					Excluir
+		 				</a></td>
+		 				</tr>	
 		 						";
-		 			}
-		 		}				
-		 	}
+		 	}					
 		} 		
 		else{
 			echo $mysqli->error;
@@ -249,15 +237,15 @@
 
 	function cadastraFinanciamento($mysqli){
 
-		$cdfi = "INSERT INTO compra_venda VALUES (NULL, '".$_POST['end']."', '".$_POST['vl']."', '".$_POST['prop']."')";
+		$cdfi = "INSERT INTO compra_venda VALUES (NULL, '".$_POST['end']."', '".$_POST['vnd']."', '".$_POST['comp']."', '".$_POST['fin']."')";
 
-		if(!$mysqli->query($cdimoveis)) {
+		if(!$mysqli->query($cdfi)) {
 			echo $mysqli->error;
 		}
 		
 		else{
 
-		echo "<script>location.href='imoveis.php';</script>";
+		echo "<script>location.href='compravenda.php';</script>";
 		}
 	}
 

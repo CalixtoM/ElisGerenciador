@@ -9,7 +9,9 @@
 		}
 		else{
 
-			echo "oi";
+			if(isset($_POST['fin'])){
+				cadastraFinanciamento($mysqli);
+			}
 
 		}
 
@@ -61,19 +63,19 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 	    	<div class="modal-content">
 	    		<div class="modal-header">
-	        		<h5 class="modal-title" id="exampleModalLongTitle">Adicionar Imovel</h5>
+	        		<h5 class="modal-title" id="exampleModalLongTitle">Adicionar Compra e Venda</h5>
 	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          			<span aria-hidden="true">&times;</span>
 	        		</button>
 	      		</div>
 	      		<div class="modal-body">
 	        		<form method="post">
-	        			<select class="form-control" name="prop" id="mod">
+	        			<select class="form-control" name="end" id="mod">
 	        				<?php
 	        					buscaImoveis2($mysqli);
 	        				?>
 	        			</select>
-	        			<select class="form-control" name="prop" id="mod">
+	        			<select class="form-control" name="vnd" id="mod">
 	        				<?php
 	        					buscaProp($mysqli);
 	        				?>
@@ -83,6 +85,7 @@
 	        					buscaComp($mysqli);
 	        				?>	
 	        			</select>
+	        			<input type="text" name="fin" class="form-control" placeholder="Informe o Tipo de FInanciamento" id="mod">
 	      		</div>
 	      		<div class="modal-footer">
 	        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
