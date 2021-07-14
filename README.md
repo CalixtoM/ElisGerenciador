@@ -28,7 +28,7 @@ Atualmente o projeto se encontra na segunda metade do desenvolvimento, todas as 
 
 ### 📈 Futuras adições:
 
-Ainda é necessário realizar a função de edição de imovéis e demais funções relacionadas a financiamento, além disso a parte do frontend ainda será feita, remodelando completamente as telas levando em consideração modelo já desenvolvido.
+Ainda é necessário realizar a função de edição de financiamentos e demais funções relacionadas ao setor financiamento, além disso a parte do frontend ainda será feita, remodelando completamente as telas levando em consideração modelo já desenvolvido.
 
 ### 🗓️ Previsão de Conclusão:
 
