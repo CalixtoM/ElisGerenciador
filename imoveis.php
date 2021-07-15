@@ -35,7 +35,6 @@
 				<table class="table">
 				  	<thead>
 				    	<tr>
-				      		<th scope="col">#</th>
 				      		<th scope="col">Endereço</th>
 				      		<th scope="col">Valor</th>
 				      		<th scope="col">Proprietário</th>

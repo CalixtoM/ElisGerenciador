@@ -4,7 +4,7 @@ include('inc/functions.php');
 $servidor = 'localhost';
 $usuario = 'root';
 $senha = 'usbw';
-$banco = 'elis';
+$banco = 'elis2';
 
 
 	$mysqli = new mysqli($servidor, $usuario, $senha, $banco);

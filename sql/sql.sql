@@ -1,4 +1,4 @@
-CREATE DATABASE Elis;
+CREATE DATABASE Elis2;
 
 USE Elis;
 
@@ -33,13 +33,18 @@ ds_financiamento varchar(45) not null
 );
 
 ALTER TABLE imovel
-ADD CONSTRAINT id_proprietario FOREIGN KEY (id_proprietario) REFERENCES cliente (cd_cliente);
+ADD CONSTRAINT id_proprietario FOREIGN KEY (id_proprietario) REFERENCES cliente (cd_cliente)
+ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE compra_venda
-ADD CONSTRAINT id_imovel FOREIGN KEY (id_imovel) REFERENCES imovel (cd_imovel);
+ADD CONSTRAINT id_imovel FOREIGN KEY (id_imovel) REFERENCES imovel (cd_imovel)
+ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE compra_venda
-ADD CONSTRAINT id_vendedor FOREIGN KEY (id_vendedor) REFERENCES imovel (id_proprietario);
+ADD CONSTRAINT id_vendedor FOREIGN KEY (id_vendedor) REFERENCES imovel (id_proprietario)
+ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE compra_venda
-ADD CONSTRAINT id_comprador FOREIGN KEY (id_comprador) REFERENCES cliente (cd_cliente);
+ADD CONSTRAINT id_comprador FOREIGN KEY (id_comprador) REFERENCES cliente (cd_cliente)
+ON UPDATE CASCADE ON DELETE CASCADE;
+

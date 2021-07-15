@@ -115,7 +115,7 @@
 	}
 
 	function buscaImoveis($mysqli){
-		$imoveis = "SELECT * FROM imovel AS i INNER JOIN cliente AS c ON i.id_proprietario = c.cd_cliente ORDER BY cd_cliente ASC";
+		$imoveis = "SELECT * FROM imovel AS i INNER JOIN cliente AS c ON i.id_proprietario = c.cd_cliente ORDER BY cd_imovel asc";
 
 		if($result = $mysqli->query($imoveis)){
 			while($obj = $result->fetch_object()){
@@ -123,18 +123,17 @@
 
 
 				echo "
-					<th scope='row'> ".$obj->cd_imovel."</th>
 					<td>".$obj->ds_endereco."</td>
 					<td>".$obj->nr_valor."</td>
 					<td>".$obj->nm_cliente."</td>
-					<td><a type='button' class='btn btn-warning' data-toggle='modal' data-target='#modaledit$obj->cd_cliente'>
+					<td><a type='button' class='btn btn-warning' data-toggle='modal' data-target='#modaledit$obj->cd_imovel'>
 					Editar
-					</a></td><td><a type='button' class='btn btn-danger' data-toggle='modal' data-target='#modaldel?cd=$obj->cd_cliente'>
+					</a></td><td><a type='button' class='btn btn-danger' data-toggle='modal' data-target='#modaldel?cd=$obj->cd_imovel'>
 					Excluir
 				</a></td>
 				</tr>
 
-				<div class='modal fade' id='modaledit$obj->cd_cliente' tabindex'-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
+				<div class='modal fade' id='modaledit$obj->cd_imovel' tabindex'-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
 						<div class='modal-dialog modal-dialog-centered' role='document'>
 					    	<div class='modal-content'>
 					    		<div class='modal-header'>
@@ -196,7 +195,7 @@
 
 	function editarImoveis($mysqli) {
 		
-		$editar = "UPDATE imovel SET ds_endereco = '".$_POST['endedit']."', nr_valor = '".$_POST['valedit']."', id_proprietario = '".$_POST['prop']."'";
+		$editar = "UPDATE imovel SET ds_endereco = '".$_POST['endedit']."', nr_valor = '".$_POST['valedit']."', id_proprietario = '".$_POST['prop']."' WHERE cd_imovel = '".$_POST['codigo']."'";
 
 		if($result = $mysqli->query($editar)){
 
