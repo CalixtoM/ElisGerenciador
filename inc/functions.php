@@ -236,16 +236,38 @@
 
 	function cadastraFinanciamento($mysqli){
 
-		$cdfi = "INSERT INTO compra_venda VALUES (NULL, '".$_POST['end']."', '".$_POST['vnd']."', '".$_POST['comp']."', '".$_POST['fin']."')";
+		$buscprop = "SELECT * FROM imovel WHERE cd_imovel = '".$_POST['end']."'";
 
-		if(!$mysqli->query($cdfi)) {
-			echo $mysqli->error;
-		}
 		
-		else{
 
-		echo "<script>location.href='compravenda.php';</script>";
+		if($result = $mysqli->query($buscprop)){
+		 	while($objt = $result->fetch_object()){
+		
+		 		$prop = $objt->id_proprietario;
+
+				$cdfi = "INSERT INTO compra_venda VALUES (NULL, '".$_POST['end']."', '".$prop."', '".$_POST['comp']."', '".$_POST['fin']."')";
+
+				if(!$mysqli->query($cdfi)) {
+					echo $mysqli->error;
+				}
+		
+				else{
+
+					echo "<script>location.href='compravenda.php';</script>";
+				}	
+			}
 		}
+	}
+
+	function editaFinanciamento($mysqli){
+
+		$buscprop = "SELECT * FROM imovel WHERE cd_imovel = '".$_POST['end']."'";
+
+		if($result = $mysqli->query($buscaprop)){
+		 	while($obj = $result->fetch_object()){
+
+		 	}
+		} 		
 	}
 
 ?>

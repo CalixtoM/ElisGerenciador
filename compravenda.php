@@ -75,11 +75,7 @@
 	        					buscaImoveis2($mysqli);
 	        				?>
 	        			</select>
-	        			<select class="form-control" name="vnd" id="mod">
-	        				<?php
-	        					buscaProp($mysqli);
-	        				?>
-	        			</select>
+
 	        			<select class="form-control" name="comp" id="mod">
 	        				<?php
 	        					buscaComp($mysqli);
