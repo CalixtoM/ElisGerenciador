@@ -34,4 +34,4 @@ Ainda é necessário realizar a função de edição de financiamentos e demais 
 
 Pretendo concluir o projeto ainda no mês de Julho, mas após a finalização tenho em mente atualizações futuras relacionadas a novas funções que não foram necessariamente solicitadas no pré-projeto.
 
-# 🛠 PROJETO EM DESENVOLVIMENTO
+# 🛠 PROJETO PAUSADO
